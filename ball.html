@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ball</title>
+    </head>
+    <body>
+        <div id="ball" style="
+        z-index: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: red;
+        ">
+        </div>
+    </body>
+</html>
+
+<script>
+let wedge = window.innerWidth;
+let hedge = window.innerHeight;
+
+function getRand(max){
+    return Math.floor(Math.random() * max);
+}
+
+let xposition = 0;
+let xvelocity = getRand(100);
+let yposition = 0;
+let yvelocity = getRand(100);
+let ball = document.getElementById('ball');
+
+function move() {
+    if(xposition + 100 > wedge){
+        xvelocity = getRand(-100);
+    }
+    else if(xposition < 0) {
+        xvelocity = getRand(100);
+    }
+
+    if(yposition + 100 > hedge) {
+        yvelocity = getRand(-100);
+    }
+    else if (yposition < 0) {
+        yvelocity = getRand(100);
+    }
+    
+    xposition = xposition + xvelocity;
+    ball.style.left = xposition + 'px';
+
+    yposition = yposition + yvelocity;
+    ball.style.top = yposition + 'px';
+}
+
+setInterval(move, 25);
+</script>
