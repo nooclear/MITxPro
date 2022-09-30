@@ -1,3 +1,0 @@
-#PACMAN Project
-
-The Goal
