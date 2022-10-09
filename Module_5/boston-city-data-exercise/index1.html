@@ -1,0 +1,48 @@
+<div id="container">
+  <!-- populated by JS-->
+</div>
+<script src="./boston.js"></script>
+<script>
+
+  function renderBoston(boston, container) {
+    var person = boston.data;
+    const len = boston.data.length; // boston is an array
+    var html = '';
+
+    var over = 0;
+    var topFive = [];
+    var overx = [];
+
+    for(let i = 0; i < len; i++) {
+      if(person[i][11] > 200000) {
+        overx.push({Name:person[i][8], Salary:person[i][11]});
+      }
+      if(person[i][11] > 100000) {
+        over++;
+        topFive.push({Name:person[i][8], Salary:person[i][11]});
+      }
+    }
+
+    topFive.sort((a, b) => (a.Salary < b.Salary) ? 1 : -1);
+    overx.sort((a, b) => (a.Salary < b.Salary) ? 1 : -1);
+
+    console.log(topFive);
+
+    for(let i = 0; i < 5; i++) {
+      html += '<li class="boston">' +
+        '<h2>' + topFive[i].Name + '</h2>' +
+        '<h3>' + topFive[i].Salary + '</h3>'
+    }
+
+    html += '<h1>' + over + ' people make over $100,000' + '<h1>'
+
+    for(let i = 0; i < overx.length; i++) {
+      html += '<li class="boston">' +
+        '<h2>' + overx[i].Name + '</h2>' +
+        '<h3>' + overx[i].Salary + '</h3>'
+    }
+
+    container.innerHTML = '<ul id = "boston">' + html + '</ul>';
+  }
+  renderBoston(boston, document.getElementById('container'));
+</script>
